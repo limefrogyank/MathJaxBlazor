@@ -1,3 +1,8 @@
-﻿<div class="my-component">
-    This Blazor component is defined in the <strong>MathJaxBlazor</strong> package.
-</div>
+﻿@if (Template == null)
+{
+    @((MarkupString)Output)
+}
+else
+{
+    @Template(Output)
+}

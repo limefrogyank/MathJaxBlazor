@@ -10,17 +10,17 @@ namespace MathJaxBlazor
     {
         [Inject] private IJSRuntime jsRuntime { get; set; }
 
-        [Parameter] public RenderFragment ChildContent { get; set; }
+        //[Parameter] public RenderFragment ChildContent { get; set; }
         [Parameter] public string Tex { get; set; }
 
-        public void Typeset()
-        {
-            jsRuntime.InvokeVoidAsync("window.mathJaxBlazor.typesetPromise");
-        }
+        //public void Typeset()
+        //{
+        //    jsRuntime.InvokeVoidAsync("window.mathJaxBlazor.typesetPromise");
+        //}
 
-        public void TypesetClear()
-        {
-            jsRuntime.InvokeVoidAsync("window.mathJaxBlazor.typesetClear");
-        }
+        //public void TypesetClear()
+        //{
+        //    jsRuntime.InvokeVoidAsync("window.mathJaxBlazor.typesetClear");
+        //}
     }
 }

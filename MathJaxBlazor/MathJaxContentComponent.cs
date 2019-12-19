@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Components;
+using Microsoft.JSInterop;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -6,18 +7,19 @@ using System.Threading.Tasks;
 
 namespace MathJaxBlazor
 {
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1063:Implement IDisposable Correctly", Justification = "<Pending>")]
     public class MathJaxContentComponent : ComponentBase, IDisposable
     {
-        [CascadingParameter] public MathJaxSettings MathJaxSettings { get; set; }
-
+        [Inject] private IJSRuntime jsRuntime { get; set; }
+        
         public void Dispose()
         {
-            MathJaxSettings.TypesetClear();
+            jsRuntime.InvokeVoidAsync("window.mathJaxBlazor.typesetClear");
         }
 
         protected override Task OnAfterRenderAsync(bool firstRender)
         {
-            MathJaxSettings.Typeset();
+            jsRuntime.InvokeVoidAsync("window.mathJaxBlazor.typesetPromise");
             return base.OnAfterRenderAsync(firstRender);
         }
     }
