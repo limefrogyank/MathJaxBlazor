@@ -4,6 +4,17 @@ Blazor components that use MathJax
 ## WARNING!
 MathJax changes the DOM.  **Blazor does NOT like this.**  As such, there are limitations to using this library.
 
+## To use
+Requires MathJax v3. Add the following to your html doc header:
+```
+<script type="text/javascript"
+            src="_content/MathJaxBlazor/mathJaxBlazor.js">
+    </script>
+    <script type="text/javascript" id="MathJax-script" async
+            src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+    </script>
+```
+
 ## Components
 ### MathJaxContentComponent Component
 This component can be used as a base class for a page or by itself.  Anything wrapped with this component will have the text parsed for MathJax-parsable content.  By default, MathJax will parse equations surrounded by `\( ... \)`, `\[ ... \]`, and `$$ ... $$`.  If you want to change the parsing markers, see the `MaxJaxSettings` component below.
