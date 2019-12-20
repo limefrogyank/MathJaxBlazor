@@ -5,14 +5,14 @@ Blazor components that use MathJax
 MathJax changes the DOM.  **Blazor does NOT like this.**  As such, there are limitations to using this library.
 
 ## Components
-## MathJaxContentComponent Component
+### MathJaxContentComponent Component
 This component can be used as a base class for a page or by itself.  Anything wrapped with this component will have the text parsed for MathJax-parsable content.  By default, MathJax will parse equations surrounded by `\( ... \)`, `\[ ... \]`, and `$$ ... $$`.  If you want to change the parsing markers, see the `MaxJaxSettings` component below.
 
 *Limitations*
 - You can ONLY parse LaTeX type equations with this component.  It will currently NOT work with MathML as MathJax is doing something extra when processing MathML that I haven't figured out yet.
 - It's also a bit clunky and might have performance issues.  For every state change in Blazor, we **must** revert to the original text or else Blazor will either get rid of the html completely or just crash.  This is just how Blazor works.  
 
-## Equation Component
+### Equation Component
 This one works just fine in Blazor because you're not adding anything directly to the DOM.  Instead, you place your LaTeX or MathML code in the `Equation`'s `Value` property and the component will render it as a `MarkupString`.  *As per Microsoft guidance, using `MarkupString` is a security risk if somehow the MathJax output is intercepted.*
 
 To output html directly:
@@ -28,7 +28,7 @@ You can also use `Equation` with the `Template` property.  This will allow you t
 </Equation>
 ```
 
-## MathJaxSettings Component
+### MathJaxSettings Component
 To modify the TeX input settings, just stick a `MathJaxSettings` anywhere in your app (preferrably somewhere that won't get updated much).  There is a `TexInputSettings` class with default values that match MathJax's default values.  Create a new class and adjust the settings however you'd like.  The demo has an example where the delimiters for Tex have an added single dollar sign `$..$` delimiter for inlineMath.
 
 ```
