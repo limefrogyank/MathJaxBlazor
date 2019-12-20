@@ -6,13 +6,16 @@ window.MathJax = {
     }
 };
 
+//window.typesetPromise = Promise.resolve();
+
 window.mathJaxBlazor = {
+    promise: Promise.resolve(),
     applySettings: function (texSettings) {
         MathJax.config.tex.inlineMath = texSettings.inlineMath;
         MathJax.config.tex.displayMath = texSettings.displayMath;
-        MathJax.startup.input[0].findTeX.options.processEscapes = texSettings.processEscapes;
-        MathJax.startup.input[0].findTeX.options.processEnvironments = texSettings.processEnvironments;
-        MathJax.startup.input[0].findTeX.options.processRefs = texSettings.processRefs;
+        //MathJax.startup.input[0].findTeX.options.processEscapes = texSettings.processEscapes;
+        //MathJax.startup.input[0].findTeX.options.processEnvironments = texSettings.processEnvironments;
+        //MathJax.startup.input[0].findTeX.options.processRefs = texSettings.processRefs;
         MathJax.startup.getComponents();
     },
     undoTypset: function () {
@@ -27,8 +30,12 @@ window.mathJaxBlazor = {
         //MathJax.texReset();
         //MathJax.typesetClear();
         //MathJax.startup.document.clear();
-        this.typesetClear();
-        MathJax.typeset();
+        this.promise = this.promise.then(() => {
+            this.typesetClear();
+            return MathJax.typesetPromise();
+        }).catch(err => {
+            console.log(err);
+        });
     },
     typesetClear: function () {
         try {
