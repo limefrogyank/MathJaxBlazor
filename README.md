@@ -6,3 +6,48 @@ MathJax changes HTML.  Blazor does NOT like this.  As such, there are limitation
 1.  You cannot write plain MathML code into your HTML documents and expect MathJax to render it without problems.  MathJax replaces `<math>` with its own tags and thoroughly confuses Blazor. When you try to change state later, everything will die.
 2.  You *can* write Latex using the standard MathJax tags `\(` and `)\`.  Since this is plain text, Blazor doesn't expect to have to parse a document tree later.
 3.  Wait until `Equation` components are ready if you must use MathML.
+
+## Components
+## MathJaxContentComponent Component
+This component can be used as a base class for a page or by itself.  Anything wrapped with this component will have the text parsed for MathJax-parsable content.  By default, MathJax will parse equations surrounded by `\( ... \)`, `\[ ... \]`, and `$$ ... $$`.  If you want to change the parsing markers, see the `MaxJaxSettings` component below.
+
+*Limitations*
+- You can ONLY parse LaTeX type equations with this component.  It will currently NOT work with MathML as MathJax is doing something extra when processing MathML that I haven't figured out yet.
+- It's also a bit clunky and might have performance issues.  For every state change in Blazor, we **must** revert to the original text or else Blazor will either get rid of the html completely or just crash.  This is just how Blazor works.  
+
+## Equation Component
+This one works just fine in Blazor because you're not adding anything directly to the DOM.  Instead, you place your LaTeX or MathML code in the `Equation`'s `Value` property and the component will render it as a `MarkupString`.  *As per Microsoft guidance, using `MarkupString` is a security risk if somehow the MathJax output is intercepted.*
+
+To output html directly:
+```
+<Equation Value="\frac{d}{dx}\left( \int_{0}^{x} f(u)\,du\right)=f(x)" />
+```
+You can also use `Equation` with the `Template` property.  This will allow you to customize the output yourself.  Instead of `MarkupString`, it will only output the string representation of the html so you'll have to handle the conversion yourself.
+```
+<Equation Value="\frac{d}{dx}\left( \int_{0}^{x} f(u)\,du\right)=f(x)" >
+  <Template>
+    <SomeComponent SomeProperty="Context" />
+  </Template>
+</Equation>
+```
+
+## MathJaxSettings Component
+To modify the TeX input settings, just stick a `MathJaxSettings` anywhere in your app (preferrably somewhere that won't get updated much).  There is a `TexInputSettings` class with default values that match MathJax's default values.  Create a new class and adjust the settings however you'd like.  The demo has an example where the delimiters for Tex have an added single dollar sign `$..$` delimiter for inlineMath.
+
+```
+<MathJaxSettings Tex="texSettings"/>
+<Router>...</Router>
+
+@code{
+
+    TexInputSettings texSettings = new TexInputSettings();
+
+    protected override Task OnInitializedAsync()
+    {
+        texSettings.InlineMath.Add(new string[] { "$", "$" });
+        return base.OnInitializedAsync();
+    }
+
+}
+
+```
