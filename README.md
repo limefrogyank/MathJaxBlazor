@@ -44,6 +44,8 @@ You can also use `Equation` with the `Template` property.  This will allow you t
 ### MathJaxSettings Component
 To modify the TeX input settings, just stick a `MathJaxSettings` anywhere in your app (preferrably somewhere that won't get updated much).  There is a `TexInputSettings` class with default values that match MathJax's default values.  Create a new class and adjust the settings however you'd like.  The demo has an example where the delimiters for Tex have an added single dollar sign `$..$` delimiter for inlineMath.
 
+- currently only `InlineMath` and `DisplayMath` properties work
+
 ```
 <MathJaxSettings Tex="texSettings"/>
 <Router>...</Router>
