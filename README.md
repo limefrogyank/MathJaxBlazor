@@ -8,11 +8,11 @@ MathJax changes the DOM.  **Blazor does NOT like this.**  As such, there are lim
 Requires MathJax v3. Add the following to your html doc header:
 ```
 <script type="text/javascript"
-            src="_content/MathJaxBlazor/mathJaxBlazor.js">
-    </script>
-    <script type="text/javascript" id="MathJax-script" async
-            src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
-    </script>
+        src="_content/MathJaxBlazor/mathJaxBlazor.js">
+</script>
+<script type="text/javascript" id="MathJax-script" async
+        src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
 ```
 
 ## Components
