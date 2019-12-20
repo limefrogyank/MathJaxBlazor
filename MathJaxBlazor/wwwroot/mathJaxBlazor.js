@@ -7,17 +7,33 @@ window.MathJax = {
 };
 
 window.mathJaxBlazor = {
+    applySettings: function (texSettings) {
+        MathJax.config.tex.inlineMath = texSettings.inlineMath;
+        MathJax.config.tex.displayMath = texSettings.displayMath;
+        MathJax.startup.input[0].findTeX.options.processEscapes = texSettings.processEscapes;
+        MathJax.startup.input[0].findTeX.options.processEnvironments = texSettings.processEnvironments;
+        MathJax.startup.input[0].findTeX.options.processRefs = texSettings.processRefs;
+        MathJax.startup.getComponents();
+    },
+    undoTypset: function () {
+        var list = MathJax.startup.document.math.toArray();
+        for (let i = 0; i < list.length; i++) {
+            list[i].start.node.outerHTML = list[i].start.delim + list[i].math + list[i].end.delim;
+        }
+    },
 
     typesetPromise: function () {
-        MathJax.startup.document.state(0);
-        MathJax.texReset();
-        MathJax.typesetClear();
-        MathJax.startup.document.clear();
+        //MathJax.startup.document.state(0);
+        //MathJax.texReset();
+        //MathJax.typesetClear();
+        //MathJax.startup.document.clear();
+        this.typesetClear();
         MathJax.typeset();
     },
     typesetClear: function () {
         try {
-            MathJax.startup.document.state(0);
+            this.undoTypset();
+            //MathJax.startup.document.state(0);
             MathJax.texReset();
             MathJax.typesetClear();
             MathJax.startup.document.clear();
