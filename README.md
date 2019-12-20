@@ -12,6 +12,19 @@ This component can be used as a base class for a page or by itself.  Anything wr
 - You can ONLY parse LaTeX type equations with this component.  It will currently NOT work with MathML as MathJax is doing something extra when processing MathML that I haven't figured out yet.
 - It's also a bit clunky and might have performance issues.  For every state change in Blazor, we **must** revert to the original text or else Blazor will either get rid of the html completely or just crash.  This is just how Blazor works.  
 
+```
+@page "/"
+@inherits MathJaxContentComponent
+
+$$ a/c=1000 $$
+
+\( a + b = c \)
+
+\[   
+\frac{d}{dx}\left( \int_{0}^{x} f(u)\,du\right)=f(x).    
+\]
+```
+
 ### Equation Component
 This one works just fine in Blazor because you're not adding anything directly to the DOM.  Instead, you place your LaTeX or MathML code in the `Equation`'s `Value` property and the component will render it as a `MarkupString`.  *As per Microsoft guidance, using `MarkupString` is a security risk if somehow the MathJax output is intercepted.*
 
