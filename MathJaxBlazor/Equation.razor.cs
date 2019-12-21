@@ -11,7 +11,7 @@ namespace MathJaxBlazor
     {
         [Inject] private IJSRuntime jsRuntime { get; set; }
 
-
+        [Parameter] public bool TeXDisplay { get; set; } = true; // only works for TeX inputs
         [Parameter] public EventCallback<string> OutputChanged { get; set; }
         //[Parameter] public bool ShowRawOutput { get; set; } = false;  //for debug, no need for templated component
         [Parameter] public RenderFragment<string> Template { get; set; }
@@ -55,7 +55,7 @@ namespace MathJaxBlazor
             }
             else
             {
-                result = await jsRuntime.InvokeAsync<string>("window.mathJaxBlazor.processLatex", Value);
+                result = await jsRuntime.InvokeAsync<string>("window.mathJaxBlazor.processLatex", Value, TeXDisplay);
             }
             Output = result;
             await OutputChanged.InvokeAsync(result);

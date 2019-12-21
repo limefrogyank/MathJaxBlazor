@@ -66,8 +66,8 @@ window.mathJaxBlazor = {
             return err.message;
         });
     },
-    processLatex: async function (input) {
-        return MathJax.tex2chtmlPromise(input).then(function (node) {
+    processLatex: async function (input, isDisplay) {
+        return MathJax.tex2chtmlPromise(input, {display:isDisplay}).then(function (node) {
             //
             //  The promise returns the typeset node, which we add to the output
             //  Then update the document to include the adjusted CSS for the
