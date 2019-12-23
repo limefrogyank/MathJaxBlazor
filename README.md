@@ -18,6 +18,9 @@ Requires MathJax v3. Add the following to your html doc header:
 </script>
 ```
 
+## Updates
+- v1.0.2 - Added `ChildContent` to `MathContentComponent` so you can stick it anywhere on a page.
+
 ## Components
 ### MathJaxContentComponent Component
 This component can be used as a base class for a page or by itself.  Anything wrapped with this component will have the text parsed for MathJax-parsable content.  By default, MathJax will parse equations surrounded by `\( ... \)`, `\[ ... \]`, and `$$ ... $$`.  If you want to change the parsing markers, see the `MaxJaxSettings` component below.
