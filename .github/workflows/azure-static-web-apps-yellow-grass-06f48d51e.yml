@@ -24,7 +24,7 @@ jobs:
           dotnet-version: 3.1.300
     
       - name: Build App
-        run: dotnet publish -c Release -o published Demo/BlazorFluentUI.Demo.ClientSide/
+        run: dotnet publish -c Release -o published MathJaxBlazor/DemoWasm/
     
       - name: Build And Deploy
         id: builddeploy
