@@ -49,17 +49,20 @@ namespace MathJaxBlazor
         private async Task ProcessValueAsync()
         {
             string result;
-            if (Value.StartsWith("<math"))
+            if (!string.IsNullOrWhiteSpace(Value))
             {
-                result = await jsRuntime.InvokeAsync<string>("window.mathJaxBlazor.processMathML", Value);
+                if (Value.StartsWith("<math"))
+                {
+                    result = await jsRuntime.InvokeAsync<string>("window.mathJaxBlazor.processMathML", Value);
+                }
+                else
+                {
+                    result = await jsRuntime.InvokeAsync<string>("window.mathJaxBlazor.processLatex", Value, TeXDisplay);
+                }
+                Output = result;
+                await OutputChanged.InvokeAsync(result);
+                StateHasChanged();
             }
-            else
-            {
-                result = await jsRuntime.InvokeAsync<string>("window.mathJaxBlazor.processLatex", Value, TeXDisplay);
-            }
-            Output = result;
-            await OutputChanged.InvokeAsync(result);
-            StateHasChanged();
         }
     }
 }

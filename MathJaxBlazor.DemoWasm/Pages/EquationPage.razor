@@ -9,21 +9,13 @@
 
 <br/>
 
-<BlazorFabric.PrimaryButton>
+<button class="btn-primary">
     <Equation Value="\frac{g}{mL}" />
-</BlazorFabric.PrimaryButton>
+</button>
 
-<BlazorFabric.TextField Style="max-width:200px;" Label="Using LaTex">
-    <SuffixContent>
-        <Equation Value="\frac{g}{mL}" />
-    </SuffixContent>
-</BlazorFabric.TextField>
+<Equation Value="\frac{g}{mL}" />
 
-<BlazorFabric.TextField Style="max-width:200px;" Label="Using MathML">
-    <SuffixContent>
-        <Equation Value=@slantedMathML />
-    </SuffixContent>
-</BlazorFabric.TextField>
+<Equation Value=@slantedMathML />
 
 @code {
     string testMathML = @"<math display=""block"" xmlns=""http://www.w3.org/1998/Math/MathML"">
