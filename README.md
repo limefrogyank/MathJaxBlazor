@@ -19,6 +19,7 @@ Requires MathJax v3. Add the following to your html doc header:
 ```
 
 ## Updates
+- v1.0.4 - Updated wasm demo to Blazor 3.2.0, removed demo dependency on BlazorFluentUI/BlazorFabric
 - v1.0.3 - Fixed `Equation` so that null `Value` does not crash Blazor.
 - v1.0.2 - Added `ChildContent` to `MathContentComponent` so you can stick it anywhere on a page.
 
