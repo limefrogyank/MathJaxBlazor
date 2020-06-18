@@ -3,7 +3,7 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <RazorLangVersion>3.0</RazorLangVersion>
-    <Version>1.0.3</Version>
+    <Version>1.0.4</Version>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Description>Render LaTeX and MathML in a Blazor app</Description>
     <PackageProjectUrl>https://github.com/limefrogyank/MathJaxBlazor</PackageProjectUrl>
