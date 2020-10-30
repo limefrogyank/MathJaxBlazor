@@ -63,6 +63,12 @@ namespace MathJaxBlazor
                 await OutputChanged.InvokeAsync(result);
                 StateHasChanged();
             }
+            else
+            {
+                Output = "";
+                await OutputChanged.InvokeAsync("");
+                StateHasChanged();
+            }
         }
     }
 }
