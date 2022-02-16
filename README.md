@@ -10,15 +10,13 @@ https://yellow-grass-06f48d51e.azurestaticapps.net/
 ## To use
 Requires MathJax v3. Add the following to your html doc header:
 ```
-<script type="text/javascript"
-        src="_content/MathJaxBlazor/mathJaxBlazor.js">
-</script>
 <script type="text/javascript" id="MathJax-script" async
         src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
 </script>
 ```
 
 ## Updates
+- v2.0.0 - Updated package to net6. Uses javascript isolation and fixes any issues with MathJax javascript errors.
 - v1.0.4 - Updated wasm demo to Blazor 3.2.0, removed demo dependency on BlazorFluentUI/BlazorFabric
 - v1.0.3 - Fixed `Equation` so that null `Value` does not crash Blazor.
 - v1.0.2 - Added `ChildContent` to `MathContentComponent` so you can stick it anywhere on a page.
