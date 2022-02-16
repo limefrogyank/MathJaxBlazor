@@ -1,0 +1,17 @@
+{
+  "compilerOptions": {
+    "noImplicitAny": false,
+    "noEmitOnError": true,
+    "removeComments": false,
+    "sourceMap": true,
+    "lib": ["ES6", "DOM"],
+    "module": "ES6",
+    "target": "es5"
+  },
+  "include": [
+    "wwwroot/**/*"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
+}

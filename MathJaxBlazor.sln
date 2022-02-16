@@ -1,18 +1,18 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.29521.150
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.32014.148
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MathJaxBlazor.Demo", "MathJaxBlazor.Demo\MathJaxBlazor.Demo.csproj", "{04B677F5-BD11-4F85-A6AF-2948A47E7033}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MathJaxBlazor", "MathJaxBlazor\MathJaxBlazor.csproj", "{4F56FC37-6E1E-4281-868D-BB5AF12FE23E}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MathJaxBlazor.DemoWasm", "MathJaxBlazor.DemoWasm\MathJaxBlazor.DemoWasm.csproj", "{A25F089D-AB0D-439D-B767-D3DCBD326D99}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MathJaxBlazor", "MathJaxBlazor\MathJaxBlazor.csproj", "{4F56FC37-6E1E-4281-868D-BB5AF12FE23E}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{7D36BA1A-0D19-41DE-B49B-B330109182DB}"
 	ProjectSection(SolutionItems) = preProject
 		.editorconfig = .editorconfig
 	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MathJaxBlazor.Demo.Shared", "MathJaxBlazor.Demo.Shared\MathJaxBlazor.Demo.Shared.csproj", "{76640E72-35AC-4348-9ED5-857FD8B1C8C6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MathJaxBlazor.Demo.ClientSide", "MathJaxBlazor.Demo.ClientSide\MathJaxBlazor.Demo.ClientSide.csproj", "{6353C12E-E70E-4277-9207-A58E1C5340DC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -20,18 +20,18 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{04B677F5-BD11-4F85-A6AF-2948A47E7033}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{04B677F5-BD11-4F85-A6AF-2948A47E7033}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{04B677F5-BD11-4F85-A6AF-2948A47E7033}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{04B677F5-BD11-4F85-A6AF-2948A47E7033}.Release|Any CPU.Build.0 = Release|Any CPU
 		{4F56FC37-6E1E-4281-868D-BB5AF12FE23E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{4F56FC37-6E1E-4281-868D-BB5AF12FE23E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4F56FC37-6E1E-4281-868D-BB5AF12FE23E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4F56FC37-6E1E-4281-868D-BB5AF12FE23E}.Release|Any CPU.Build.0 = Release|Any CPU
-		{A25F089D-AB0D-439D-B767-D3DCBD326D99}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A25F089D-AB0D-439D-B767-D3DCBD326D99}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A25F089D-AB0D-439D-B767-D3DCBD326D99}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A25F089D-AB0D-439D-B767-D3DCBD326D99}.Release|Any CPU.Build.0 = Release|Any CPU
+		{76640E72-35AC-4348-9ED5-857FD8B1C8C6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{76640E72-35AC-4348-9ED5-857FD8B1C8C6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{76640E72-35AC-4348-9ED5-857FD8B1C8C6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{76640E72-35AC-4348-9ED5-857FD8B1C8C6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6353C12E-E70E-4277-9207-A58E1C5340DC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6353C12E-E70E-4277-9207-A58E1C5340DC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6353C12E-E70E-4277-9207-A58E1C5340DC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6353C12E-E70E-4277-9207-A58E1C5340DC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

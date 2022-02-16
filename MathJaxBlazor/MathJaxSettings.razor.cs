@@ -9,6 +9,7 @@ namespace MathJaxBlazor
 {
     public partial class MathJaxSettings
     {
+        private IJSObjectReference? module;
         private bool hasRendered;
 
         [Inject] private IJSRuntime jsRuntime { get; set; }
@@ -29,6 +30,7 @@ namespace MathJaxBlazor
         {
             if (firstRender)
             {
+                module = await jsRuntime.InvokeAsync<IJSObjectReference>("import", "./_content/MathJaxBlazor/mathJaxBlazor.js");
                 await ApplySettingsAsync();
                 hasRendered = true;
             }
@@ -37,7 +39,7 @@ namespace MathJaxBlazor
 
         private async Task ApplySettingsAsync()
         {
-            await jsRuntime.InvokeVoidAsync("window.mathJaxBlazor.applySettings", Tex);
+            await module.InvokeVoidAsync("applySettings", Tex);
         }
     }
 }

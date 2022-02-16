@@ -7,8 +7,9 @@ using System.Threading.Tasks;
 
 namespace MathJaxBlazor
 {
-    public sealed partial class Equation : IDisposable
+    public sealed partial class Equation : IAsyncDisposable
     {
+        private IJSObjectReference? module;
         [Inject] private IJSRuntime jsRuntime { get; set; }
 
         [Parameter] public bool TeXDisplay { get; set; } = true; // only works for TeX inputs
@@ -35,15 +36,11 @@ namespace MathJaxBlazor
         {
             if (firstRender)
             {
+                module = await jsRuntime.InvokeAsync<IJSObjectReference>("import", "./_content/MathJaxBlazor/mathJaxBlazor.js");
                 await ProcessValueAsync();
                 hasRendered = true;
             }
             await base.OnAfterRenderAsync(firstRender);
-        }
-
-        public void Dispose()
-        {
-            
         }
 
         private async Task ProcessValueAsync()
@@ -53,11 +50,11 @@ namespace MathJaxBlazor
             {
                 if (Value.StartsWith("<math"))
                 {
-                    result = await jsRuntime.InvokeAsync<string>("window.mathJaxBlazor.processMathML", Value);
+                    result = await module.InvokeAsync<string>("processMathML", Value);
                 }
                 else
                 {
-                    result = await jsRuntime.InvokeAsync<string>("window.mathJaxBlazor.processLatex", Value, TeXDisplay);
+                    result = await module.InvokeAsync<string>("processLatex", Value, TeXDisplay);
                 }
                 Output = result;
                 await OutputChanged.InvokeAsync(result);
@@ -68,6 +65,14 @@ namespace MathJaxBlazor
                 Output = "";
                 await OutputChanged.InvokeAsync("");
                 StateHasChanged();
+            }
+        }
+
+        public async ValueTask DisposeAsync()
+        {
+            if (module != null)
+            {
+                await module.DisposeAsync();
             }
         }
     }
