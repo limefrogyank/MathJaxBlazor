@@ -11,6 +11,7 @@
     <RepositoryUrl>https://github.com/limefrogyank/MathJaxBlazor</RepositoryUrl>
     <RepositoryType>Git</RepositoryType>
     <Authors>L McPherson</Authors>
+	<IncludeContentInPack>false</IncludeContentInPack>
   </PropertyGroup>
 
 
