@@ -5,7 +5,7 @@ Blazor components that use MathJax
 MathJax changes the DOM.  **Blazor does NOT like this.**  As such, there are limitations to using this library.
 
 ## Demo (WASM)
-https://yellow-grass-06f48d51e.azurestaticapps.net/  (NOT UPDATED TO v2.0.0... still much older v1.0.4)
+https://yellow-grass-06f48d51e.azurestaticapps.net/ (updated to NET6)
 
 ## To use
 Requires MathJax v3. Add the following to your html doc header:
