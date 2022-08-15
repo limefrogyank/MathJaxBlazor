@@ -13,9 +13,9 @@ namespace MathJaxBlazor
     {
         private IJSObjectReference? module;
 
-        [Inject] private IJSRuntime jsRuntime { get; set; }
-        
-        [Parameter] public RenderFragment ChildContent { get; set; }
+        [Inject] private IJSRuntime jsRuntime { get; set; } = null!;
+
+        [Parameter] public RenderFragment ChildContent { get; set; } = null!;
 
        
         protected override void BuildRenderTree(RenderTreeBuilder builder)
@@ -28,9 +28,12 @@ namespace MathJaxBlazor
         {
             if (firstRender)
             {
-                module = await jsRuntime.InvokeAsync<IJSObjectReference>("import", "./_content/MathJaxBlazor/mathJaxBlazor.js");
+                module = await jsRuntime!.InvokeAsync<IJSObjectReference>("import", "./_content/MathJaxBlazor/mathJaxBlazor.js");
             }
-            await module.InvokeVoidAsync("typesetPromise");
+            if (module != null)
+            {
+                await module.InvokeVoidAsync("typesetPromise");
+            }
             await base.OnAfterRenderAsync(firstRender);
         }
 

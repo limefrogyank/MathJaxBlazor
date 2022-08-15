@@ -10,16 +10,16 @@ namespace MathJaxBlazor
     public sealed partial class Equation : IAsyncDisposable
     {
         private IJSObjectReference? module;
-        [Inject] private IJSRuntime jsRuntime { get; set; }
+        [Inject] private IJSRuntime jsRuntime { get; set; } = null!;
 
         [Parameter] public bool TeXDisplay { get; set; } = true; // only works for TeX inputs
         [Parameter] public EventCallback<string> OutputChanged { get; set; }
         //[Parameter] public bool ShowRawOutput { get; set; } = false;  //for debug, no need for templated component
-        [Parameter] public RenderFragment<string> Template { get; set; }
-        [Parameter] public string Value { get; set; }
+        [Parameter] public RenderFragment<string> Template { get; set; } = null!;
+        [Parameter] public string? Value { get; set; }
         [Parameter] public EventCallback<string> ValueChanged { get; set; }
 
-        public string Output { get; private set; }
+        public string Output { get; private set; } = String.Empty;
 
         private bool hasRendered = false;
 
@@ -45,16 +45,19 @@ namespace MathJaxBlazor
 
         private async Task ProcessValueAsync()
         {
-            string result;
+            string result = String.Empty;
             if (!string.IsNullOrWhiteSpace(Value))
             {
-                if (Value.StartsWith("<math"))
+                if (module != null)
                 {
-                    result = await module.InvokeAsync<string>("processMathML", Value);
-                }
-                else
-                {
-                    result = await module.InvokeAsync<string>("processLatex", Value, TeXDisplay);
+                    if (Value.StartsWith("<math"))
+                    {
+                        result = await module.InvokeAsync<string>("processMathML", Value);
+                    }
+                    else
+                    {
+                        result = await module.InvokeAsync<string>("processLatex", Value, TeXDisplay);
+                    }
                 }
                 Output = result;
                 await OutputChanged.InvokeAsync(result);
